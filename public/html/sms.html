@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--ID:ySV4jnlQ0qvANN1SiclzMpbG-gzGzoHsz
+key:jc0q5EAGscO8doeAk2jE6NYr
+npm install leancloud-storage --save
+-->
+
+手机号：<input type="text" id="phone">
+<button onclick="sendCode()">获取验证码</button>
+<span id="sendMsg"></span>
+<br>
+输入验证码：<input type="text" id="code">
+<button onclick="verifyCode()">验证</button>
+<span id="verifyMsg"></span>
+
+<script src="../js/jquery-1.11.3.js"></script>
+<script>
+    function sendCode() {
+        $.ajax({
+            url:"/sendCode.do",
+            type:"post",
+            data:{
+                phone:$("#phone").val()
+            },
+            success:function (data) {
+                console.log(data);
+                $("#sendMsg").html(data);
+            }
+        })
+    }
+    // AV.Cloud.requestSmsCode({
+    //     mobilePhoneNumber: '18612345678',  // 目标手机号
+    //     template: 'Register_Notice',       // 控制台预设的模板名称
+    //     sign:'LeanCloud'.                  // 控制台预设的短信签名
+    // }).then(function(){
+    //     //调用成功
+    // }, function(err){
+    //     //调用失败
+    // });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes"  />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no">
+    <title>用户注册</title>
+    <script type="text/javascript" src="script/libs/jquery.js"></script>
+    <script src="script/libs/qikoo.js"></script>
+    <link rel="apple-touch-icon-precomposed" href="images/haoroomsicon.jpg" />
+    <link rel="apple-touch-startup-image" href="images/haoroomsicon.jpg" />
+    <link rel="stylesheet" href="css/qikoo.css">
+    <link rel="stylesheet" href="css/store.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+</head>
+<body>
+<header class="u-header">
+    <div class="uc_return">
+        <div class="uc_return_l" onclick="window.history.back()"></div>
+        <div class="uc_return_c">注册</div>
+    </div>
+</header>
+
+<form id="reg">
+    <section class="logging">
+        <ul class="bgf pl12 outborder">
+            <li class="pt12 pb12 border_bottom">
+                <s></s>
+                <input name="mobile" type="number" placeholder="请输入您的手机号" id="login_userName">
+                <s class="warn" id="pass1_error" style="display:none;"></s>
+            </li>
+            <li class="pt12 pb12">
+                <s class="uc_logging_password"></s>
+                <input name="userpwd" type="password" placeholder="请输入您的密码" id="login_Password">
+                <s class="warn" id="pass_error" style="display:none;"></s>
+            </li>
+        </ul>
+        <div class="btn_wrap" id="login_user">
+            <span class="btn" type="button" id="submit">注册</span>
+        </div>
+    </section>
+
+    <p id="restext"></p>
+</form>
+
+
+<script>
+
+    $(function(){
+            $('#submit').click(function () {
+             $.ajax({
+                type: "POST",
+                url: 'http://172.20.134.72/fjf/register',
+                dataType: "json",
+                data: $("#reg").serialize(),
+                success: function () {
+                    qikoo.dialog.alert("登陆成功！！");
+                },
+                error:function () {
+                    qikoo.dialog.alert("登陆！！");
+                }
+             });
+
+            });
+
+    })
+</script>
+</body>
+</html>

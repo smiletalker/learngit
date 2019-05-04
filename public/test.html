@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>dfsdfjsiojo</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    var str="我就是喜欢https://www.httalk.top找出来啊！";
+    var reg=/^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/g;
+    console.log(str.match(reg));
+    $(function () {
+        var tongji;
+        $.get("http://localhost:8885/js/test.json",function (res) {
+            console.log(res);
+           tongji=res.data;
+          console.log(tongji);
+            var map = {},
+                dest = [];
+            for(var i = 0; i < tongji.length; i++){
+                var ai = tongji[i];
+                if(!map[ai.time]){
+                    dest.push({
+                        time: ai.time,
+                        name: ai.type,
+                        data: [ai]
+                    });
+                    map[ai.time] = ai;
+                }else{
+                    for(var j = 0; j < dest.length; j++){
+                        var dj= dest[j];
+                        if(dj.time == ai.time){
+                            dj.data.push(ai);
+                            break;
+                        }
+                    }
+                }
+            }
+            var red=0,orange=0,yellow=0,blue=0,red_arr=[],orange_arr=[],yellow_arr=[],blue_arr=[];
+            console.log(dest);
+            for(var j=0;j<dest.length;j++){
+              for(var n=0;n<dest[j].data.length;n++){
+                if(dest[j].data[n].color=="红色"){
+                    red++;
+                }if(dest[j].data[n].color=="橙色"){
+                    orange++;
+                }if(dest[j].data[n].color=="黄色"){
+                    yellow++;
+                } if(dest[j].data[n].color=="蓝色"){
+                    blue++;
+                }
+                  console.log(blue)
+             }
+                red_arr.push(red);
+                orange_arr.push(orange);
+                yellow_arr.push(yellow);
+                blue_arr.push(blue);
+            }
+            console.log(blue_arr)
+        });
+    })
+var red=[0,0,0],or=[1,0,0],ye=[2,1,1],bl=[2,0,2];
+</script>
+</body>
+</html>

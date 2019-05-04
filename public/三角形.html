@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS三角形</title>
+</head>
+<style>
+    .triangle{
+        height: 0;
+        width: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 100px solid red;
+        position: relative;
+    }
+    .triangle:after{
+        width: 0;
+        height: 0;
+        border-top: 100px solid red;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        position: absolute;
+        content: "";
+        top: 30px;
+        left: -50px;
+    }
+
+</style>
+<body>
+<div class="triangle">
+
+</div>
+
+<script>
+    //随机打乱一个字符串
+    var  str="idfjdifndi";
+    function suffle(str) {
+        var arr=str.split("");
+        var len=arr.length;
+        for(var i=0;i<len;i++){
+            var randomIndex=Math.floor(Math.random()*len);
+            var itemIndex=arr[randomIndex];
+            arr[randomIndex]=arr[i];
+            arr[i]=itemIndex;
+        }
+        return arr.join().replace(/,/g,"");
+    }
+
+    console.log(suffle(str)); //typeof:string
+
+
+
+    //递归实现1*2+3*4+5*6+...+(n-1)n;
+    function digui(n) {
+        if(n==1){
+            return 1;
+        }
+        return n*digui(n-1);
+    }
+
+    console.log(digui(5));
+
+    var arr=new Array(6,6);
+    console.log(arr);
+
+    /*=================================*/
+    var foo=1;
+    (function () {
+        foo=2;
+        function foo() {
+
+        }
+        console.log(foo);
+
+    })();
+    console.log(foo);
+    /*=================================*/
+    function reserveStr(str) {
+        return str.split('').reverse().join('');
+    }
+    console.log(reserveStr("nice"));
+/*=================================*/
+  /*  for(var i=0;i<10;i++){
+        setTimeout(function () {
+            console.log(i)
+        },i*1000)
+    }*/
+    /*=================================*/
+    console.log(Array.isArray(String.prototype))//true
+    console.log(Array.prototype)
+    /*=================================*/
+    var str='abcaabgmmfdm'//输出cfd
+    function NoRepeat(str) {
+        var arr=[];
+       var newStr=str.split('').sort();
+       for(var i=0;i<newStr.length;i++){
+          for(var j=0;j<newStr.length;j++){
+              if(newStr[i]==newStr[j]&&i!=j){
+                  arr.push(newStr[i]);
+              }
+          }
+       }
+        return arr.join();
+    }
+    console.log(NoRepeat(str));
+    
+    //一个数列：1、1、2、3、5、8、13、21、34、……求出第100个数是多少？
+    function fbnqFunc(num) {
+        var arr=[];
+        if(num==1){
+           return arr=[1];
+        }else if(num==2){
+            return arr=[1,1];
+        }else{
+            arr=[1,1];
+            var a=1;
+            var b=1;
+            var c=2;
+            //var arrLen=arr.length;
+            for(var i=0;i<num;i++){
+                arr.push(c);
+                a=b;
+                b=c;
+                c=a+b;
+            }
+            var fin=arr.join().replace(/,/g,'').length;
+            return arr.join().replace(/,/g,'').charAt();
+        }
+    }
+
+    console.log(fbnqFunc(4));
+    
+</script>
+</body>
+</html>

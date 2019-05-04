@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>上传文件</h1>
+<form action="/uploadFile.do" method="post" enctype="multipart/form-data">
+    <h1>单文件上传</h1>
+    <!--ASCII码-->
+    <input type="file" name="myfile">
+    <button>上传</button>
+</form>
+<!--multer:npm install multer --save
+https://blog.csdn.net/zhanglf02/article/details/76201181-->
+<form  action="/uploadFiles.do" method="post" enctype="multipart/form-data">
+    <h1>多文件上传</h1>
+    <input type="file" name="myfiles" multiple="multiple"><!--可以选择多个文件-->
+    <button>上传</button>
+</form>
+
+<!--===================文件下载================-->
+<h1>文件下载</h1>
+<a href="uploads/168.xls">点击下载文件</a><!--下载的文件名不能是中文，无法识别-->
+<!--按钮下载
+不能用ajax-->
+<a href="/fileDownload.do">
+    <button>点击下载文件BTN</button>
+</a>
+
+<!--https://leancloud.cn
+https://leancloud.cn/docs/sms-guide.html-->
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes"  />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no">
+    <title>主页介绍</title>
+    <script type="text/javascript" src="script/libs/jquery.js"></script>
+    <script src="script/libs/qikoo.js"></script>
+    <link rel="apple-touch-icon-precomposed" href="images/haoroomsicon.jpg" />
+    <link rel="apple-touch-startup-image" href="images/haoroomsicon.jpg" />
+    <link rel="stylesheet" href="css/qikoo.css">
+    <link rel="stylesheet" href="css/store.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+</head>
+<body>
+
+<header class="u-header">
+    <div class="uc_return">
+        <div class="uc_return_l" onclick="window.history.back()"></div>
+        <div class="uc_return_c">登录</div>
+        <div class="uc_return_r"><a href="zhuce.html">注册</a></div>
+    </div>
+</header>
+
+<section class="logging">
+    <ul class="bgf pl12 outborder">
+        <li class="pt12 pb12 border_bottom">
+            <s></s>
+            <input name="mobile" type="number" placeholder="请输入您的手机号" id="login_userName">
+            <s class="warn" id="pass1_error" style="display:none;"></s>
+        </li>
+        <li class="pt12 pb12">
+            <s class="uc_logging_password"></s>
+            <input name="userpwd" type="password" placeholder="请输入您的密码" id="login_Password">
+            <s class="warn" id="pass_error" style="display:none;"></s>
+        </li>
+    </ul>
+    <div class="find_paw"><a href="#">忘记密码？</a></div>
+    <div class="btn_wrap" id="login_user">
+        <span class="btn">登 录</span>
+    </div>
+    <div class="quick_register">
+        <div><a href="zhuce.html">快速注册&gt;</a></div>
+    </div>
+    <span id="tishi"></span>
+</section>
+
+<script src="script/libs/require.js"  data-main="script/views/enterjs/mainconfig"></script>
+
+<script>
+    $(function () {
+        $('span .btn').click(function () {
+            $.ajax({
+                url:,
+                data{
+                    "mobile":mobile,
+                },
+                type:"post",
+                success:function (msg) {
+                    if("true"!=msg){
+                        //账号已经被注册
+                        $("span #tishi").text="<font color='red'>抱歉，"+mobile+"已经被注册了，请重新输入！</font>"
+                    }else{
+                        //账号不存在
+                        $("span #tishi").text="<font color='green'>恭喜，"+mobile+"可以注册！</font>"
+                    }
+                },
+                error:function(){
+                },
+            });
+        });
+    })
+</script>
+
+</body>
+</html>
